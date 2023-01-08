@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="110" id="IB3-J8-y4u" customClass="CountryCell" customModule="Countries" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="110"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="IB3-J8-y4u" id="JrI-qZ-GOV">
+                <rect key="frame" x="0.0" y="0.0" width="414" height="110"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QJJ-2t-CmY">
+                        <rect key="frame" x="40" y="10" width="334" height="76"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="pAa-8q-H6N">
+                        <rect key="frame" x="50" y="10" width="314" height="76"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yOV-yE-yo2">
+                                <rect key="frame" x="0.0" y="0.0" width="41.5" height="76"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w7h-ON-jli">
+                                <rect key="frame" x="238" y="0.0" width="76" height="76"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="ab5-nl-sgk"/>
+                                    <constraint firstAttribute="width" secondItem="w7h-ON-jli" secondAttribute="height" multiplier="1:1" id="pa8-E3-XDl"/>
+                                </constraints>
+                                <state key="normal" title="Button" image="star" catalog="system"/>
+                                <state key="selected" image="star.fill" catalog="system"/>
+                                <connections>
+                                    <action selector="savedButtonClicked:" destination="IB3-J8-y4u" eventType="touchUpInside" id="5YQ-M1-3s0"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                    </stackView>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="QJJ-2t-CmY" secondAttribute="trailing" constant="40" id="1P0-m0-dmz"/>
+                    <constraint firstItem="QJJ-2t-CmY" firstAttribute="top" secondItem="JrI-qZ-GOV" secondAttribute="top" constant="10" id="4ld-VF-gSg"/>
+                    <constraint firstAttribute="bottom" secondItem="pAa-8q-H6N" secondAttribute="bottom" constant="10" id="R6C-iD-ri9"/>
+                    <constraint firstAttribute="trailing" secondItem="pAa-8q-H6N" secondAttribute="trailing" constant="50" id="RoO-y9-vSP"/>
+                    <constraint firstItem="QJJ-2t-CmY" firstAttribute="leading" secondItem="JrI-qZ-GOV" secondAttribute="leading" constant="40" id="XkH-hC-LzN"/>
+                    <constraint firstItem="pAa-8q-H6N" firstAttribute="top" secondItem="JrI-qZ-GOV" secondAttribute="top" constant="10" id="ZlX-I1-zGQ"/>
+                    <constraint firstItem="pAa-8q-H6N" firstAttribute="leading" secondItem="JrI-qZ-GOV" secondAttribute="leading" constant="50" id="phq-9n-t4N"/>
+                    <constraint firstAttribute="bottom" secondItem="QJJ-2t-CmY" secondAttribute="bottom" constant="10" id="uhP-3e-pqg"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="borderView" destination="QJJ-2t-CmY" id="F1J-cE-C3h"/>
+                <outlet property="countryNameLabel" destination="yOV-yE-yo2" id="S3d-yy-NcQ"/>
+                <outlet property="savedButton" destination="w7h-ON-jli" id="sPE-Gx-QvT"/>
+            </connections>
+            <point key="canvasLocation" x="140.57971014492756" y="116.51785714285714"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="star" catalog="system" width="128" height="116"/>
+        <image name="star.fill" catalog="system" width="128" height="116"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
