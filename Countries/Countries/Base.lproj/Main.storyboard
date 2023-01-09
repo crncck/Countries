@@ -85,11 +85,20 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <wkWebView userInteractionEnabled="NO" contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="PC1-13-yL4">
+                                <rect key="frame" x="0.0" y="88" width="414" height="301"/>
+                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences" javaScriptEnabled="NO"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="aW3-7q-D5g"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="aW3-7q-D5g" firstAttribute="bottom" secondItem="ijL-3a-hWQ" secondAttribute="bottom" constant="320" id="1kq-Oo-krA"/>
+                            <constraint firstItem="PC1-13-yL4" firstAttribute="leading" secondItem="iNl-nI-oVh" secondAttribute="leading" id="AAu-HY-WV7"/>
                             <constraint firstItem="ijL-3a-hWQ" firstAttribute="top" secondItem="iwO-ET-Y7I" secondAttribute="bottom" constant="8" id="Bm6-W2-gWj"/>
                             <constraint firstItem="iwO-ET-Y7I" firstAttribute="leading" secondItem="ijL-3a-hWQ" secondAttribute="leading" id="Epv-MY-qTZ"/>
                             <constraint firstItem="ijL-3a-hWQ" firstAttribute="leading" secondItem="aW3-7q-D5g" secondAttribute="leading" constant="29" id="FO1-sJ-UKM"/>
@@ -97,11 +106,16 @@
                             <constraint firstItem="m0l-Cy-VtZ" firstAttribute="leading" secondItem="iwO-ET-Y7I" secondAttribute="trailing" constant="2" id="Gnz-Id-Unb"/>
                             <constraint firstItem="iwO-ET-Y7I" firstAttribute="centerY" secondItem="m0l-Cy-VtZ" secondAttribute="centerY" id="Kkt-H2-FG9"/>
                             <constraint firstItem="iwO-ET-Y7I" firstAttribute="top" secondItem="iNl-nI-oVh" secondAttribute="bottom" constant="33" id="MpE-20-DJN"/>
+                            <constraint firstItem="PC1-13-yL4" firstAttribute="bottom" secondItem="iNl-nI-oVh" secondAttribute="bottom" id="Oou-js-F4X"/>
                             <constraint firstItem="aW3-7q-D5g" firstAttribute="trailing" secondItem="m0l-Cy-VtZ" secondAttribute="trailing" constant="60" id="P6u-3M-6od"/>
                             <constraint firstItem="aW3-7q-D5g" firstAttribute="trailing" secondItem="ijL-3a-hWQ" secondAttribute="trailing" constant="183" id="TnL-nP-Zs1"/>
+                            <constraint firstItem="PC1-13-yL4" firstAttribute="centerX" secondItem="iNl-nI-oVh" secondAttribute="centerX" id="hqn-vC-dQZ"/>
+                            <constraint firstItem="PC1-13-yL4" firstAttribute="centerY" secondItem="iNl-nI-oVh" secondAttribute="centerY" id="jHf-ZS-vdE"/>
                             <constraint firstItem="iwO-ET-Y7I" firstAttribute="leading" secondItem="aW3-7q-D5g" secondAttribute="leading" constant="29" id="nGZ-k2-jZb"/>
+                            <constraint firstItem="PC1-13-yL4" firstAttribute="trailing" secondItem="iNl-nI-oVh" secondAttribute="trailing" id="o97-01-jLe"/>
                             <constraint firstItem="iNl-nI-oVh" firstAttribute="leading" secondItem="aW3-7q-D5g" secondAttribute="leading" id="qIg-Nc-Awn"/>
                             <constraint firstItem="iNl-nI-oVh" firstAttribute="top" secondItem="aW3-7q-D5g" secondAttribute="top" id="saH-1e-AHg"/>
+                            <constraint firstItem="PC1-13-yL4" firstAttribute="top" secondItem="iNl-nI-oVh" secondAttribute="top" id="vv2-va-qbc"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="EBH-6D-dEH">
@@ -116,11 +130,12 @@
                         <outlet property="flagImageView" destination="iNl-nI-oVh" id="FFt-R5-ISb"/>
                         <outlet property="informationButton" destination="ijL-3a-hWQ" id="vjH-bL-Muf"/>
                         <outlet property="savedButton" destination="MRr-tK-4bT" id="9p5-tW-aK4"/>
+                        <outlet property="webView" destination="PC1-13-yL4" id="Xfx-az-g84"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8EL-jM-aBb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3088" y="132"/>
+            <point key="canvasLocation" x="3086.9565217391305" y="131.91964285714286"/>
         </scene>
         <!--Saved View Controller-->
         <scene sceneID="hGI-3x-Q1c">
