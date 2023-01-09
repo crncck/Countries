@@ -9,8 +9,8 @@ import Foundation
 
 struct CountryDetailsService {
 
-    let url : URL
-    let API_KEY = "573ba9c781msh18bd260c2e61237p1123c3jsna772523cc287"
+    private let url : URL
+    private let API_KEY = "573ba9c781msh18bd260c2e61237p1123c3jsna772523cc287"
 
     init(countryCode: String) {
 
@@ -20,7 +20,8 @@ struct CountryDetailsService {
 
     }
 
-    func getCountryDetails(completion: @escaping(Result<CountryDetail, CountriesError>) -> Void) {
+    // gets country detail data through API
+    public func getCountryDetails(completion: @escaping(Result<CountryDetail, CountriesError>) -> Void) {
 
         let session = URLSession.shared
 

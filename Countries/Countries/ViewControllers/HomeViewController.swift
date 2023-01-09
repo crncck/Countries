@@ -9,19 +9,11 @@ import UIKit
 
 class HomeViewController: UIViewController {
 
+    public var chosenCountryCode = ""
+
     // MARK: - Properties
 
-    @IBOutlet weak var tableView: UITableView!
-
-    var chosenCountryCode = ""
-
-    var listOfCountries = [Country]() {
-        didSet {
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
-        }
-    }
+    @IBOutlet private weak var tableView: UITableView!
 
     // MARK: Lifecycle
 
@@ -33,7 +25,7 @@ class HomeViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
 
-        tableView.register(UINib(nibName: "CountryCell", bundle: nil), forCellReuseIdentifier: "cell")
+        tableView.register(UINib(nibName: "CountryCell", bundle: nil), forCellReuseIdentifier: "cell")          // register country cell nib
 
         fetchCountries()
 
@@ -45,7 +37,8 @@ class HomeViewController: UIViewController {
 
     // MARK: - API
 
-    func fetchCountries() {
+    // creates an api request and gets the results as a country objects
+    private func fetchCountries() {
 
         let countriesRequest = CountryService()
         countriesRequest.getCountries { [weak self] result in
@@ -53,10 +46,12 @@ class HomeViewController: UIViewController {
             case .failure(let error):
                 print(error)
             case .success(let countries):
-                self?.listOfCountries = countries
+                CountryManager.shared.countries = countries
+                DispatchQueue.main.async {
+                    self?.tableView.reloadData()
+                }
             }
         }
-
     }
 
     // MARK: - Actions
@@ -70,7 +65,7 @@ class HomeViewController: UIViewController {
 
     // MARK: - Helpers
 
-    func updateUI() {
+    private func updateUI() {
         self.navigationItem.title = "Countries"
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for:.default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
@@ -87,13 +82,12 @@ class HomeViewController: UIViewController {
 extension HomeViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return listOfCountries.count
+        return CountryManager.shared.countries.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? CountryCell {
-
-            let country = listOfCountries[indexPath.row]
+            let country = CountryManager.shared.countries[indexPath.row]
             cell.country = country
             return cell
         }
@@ -109,7 +103,7 @@ extension HomeViewController: UITableViewDataSource {
 extension HomeViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        chosenCountryCode = listOfCountries[indexPath.row].code
+        chosenCountryCode = CountryManager.shared.countries[indexPath.row].code             // send the country code to detail page
         performSegue(withIdentifier: "goDetails", sender: self)
     }
 

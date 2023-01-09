@@ -14,8 +14,8 @@ enum CountriesError: Error {
 
 struct CountryService {
 
-    let url : URL
-    let API_KEY = "573ba9c781msh18bd260c2e61237p1123c3jsna772523cc287"
+    private let url : URL
+    private let API_KEY = "573ba9c781msh18bd260c2e61237p1123c3jsna772523cc287"
 
     init() {
 
@@ -25,7 +25,8 @@ struct CountryService {
 
     }
 
-    func getCountries(completion: @escaping(Result<[Country], CountriesError>) -> Void) {
+    // gets country data through API
+    public func getCountries(completion: @escaping(Result<[Country], CountriesError>) -> Void) {
 
         let session = URLSession.shared
 

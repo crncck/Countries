@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		47312D16296C1F32007440FD /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47312D15296C1F32007440FD /* Utils.swift */; };
+		47312D1D296C255B007440FD /* CountryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47312D1C296C255B007440FD /* CountryManager.swift */; };
 		47888B302968505A0076C88B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47888B2F2968505A0076C88B /* AppDelegate.swift */; };
 		47888B322968505A0076C88B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47888B312968505A0076C88B /* SceneDelegate.swift */; };
 		47888B342968505A0076C88B /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47888B332968505A0076C88B /* HomeViewController.swift */; };
@@ -25,6 +27,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		47312D15296C1F32007440FD /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		47312D1C296C255B007440FD /* CountryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryManager.swift; sourceTree = "<group>"; };
 		47888B2C2968505A0076C88B /* Countries.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Countries.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		47888B2F2968505A0076C88B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		47888B312968505A0076C88B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -55,6 +59,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		47312D14296C1F14007440FD /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				47312D15296C1F32007440FD /* Utils.swift */,
+				47312D1C296C255B007440FD /* CountryManager.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		47888B232968505A0076C88B = {
 			isa = PBXGroup;
 			children = (
@@ -74,6 +87,7 @@
 		47888B2E2968505A0076C88B /* Countries */ = {
 			isa = PBXGroup;
 			children = (
+				47312D14296C1F14007440FD /* Utils */,
 				47FC5447296B136A00C02433 /* API */,
 				47FC5443296B128A00C02433 /* Views */,
 				47FC5442296B127A00C02433 /* ViewControllers */,
@@ -210,8 +224,10 @@
 				47B8ED1E2968C257002B2F6E /* SavedViewController.swift in Sources */,
 				478A37A12969C3860040A79E /* TabBarViewController.swift in Sources */,
 				47E272272968CD6100319064 /* Country.swift in Sources */,
+				47312D1D296C255B007440FD /* CountryManager.swift in Sources */,
 				47888B322968505A0076C88B /* SceneDelegate.swift in Sources */,
 				47FC544A296B14B800C02433 /* CountryDetailsService.swift in Sources */,
+				47312D16296C1F32007440FD /* Utils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

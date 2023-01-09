@@ -7,8 +7,6 @@
 
 import UIKit
 
-var savedSet = Set<Country?>()
-
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 

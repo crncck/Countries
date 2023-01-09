@@ -7,16 +7,21 @@
 
 import UIKit
 
+protocol CountryCellDelegate {
+
+    func didClickedSavedButton()
+
+}
+
 class CountryCell: UITableViewCell {
+
+    var delegate: CountryCellDelegate?
 
     var country: Country? {
         didSet {
             updateUI()
         }
     }
-
-    var savedArray = [Country?]()
-    var savedCountriesSet = Set<Country?>()
 
     // MARK: - Properties
 
@@ -40,6 +45,9 @@ class CountryCell: UITableViewCell {
 
     func updateUI() {
         countryNameLabel.text = country?.name
+
+        // change the selection of the saved button if the country is saved in user defaults
+        savedButton.isSelected = Utils.checkIfCountryIsSaved(countryCode: country?.code ?? "")
     }
 
     // MARK: - Actions
@@ -49,36 +57,17 @@ class CountryCell: UITableViewCell {
 
     }
 
+    // adds or removes country code from user defaults when it is clicked
     @IBAction func savedButtonClicked(_ sender: Any) {
         savedButton.isSelected = !savedButton.isSelected
-        var savedCountries = Array(savedCountriesSet)
 
         if savedButton.isSelected {
-            savedCountries.append(country)
-            savedSet.insert(country)
-            print(savedSet.count)
-
-            /*
-            do {
-                let encoder = JSONEncoder()
-                let data = try encoder.encode(savedCountries)
-                UserDefaults.standard.set(data, forKey:"savedCountries")
-            } catch {
-                print("Unable to Encode Note (\(error))")
-            }
-            */
-            print("saved")
-            let array = Array(savedSet)
-            print(array)
-
+            Utils.saveCountryToUserDefaults(countryCode: country?.code ?? "")
         } else {
-            savedSet.remove(country)
-            print("removed")
-            print(savedSet.count)
-            let array = Array(savedSet)
-            print(array)
+            Utils.removeCountryFromUserDefaults(countryCode: country?.code ?? "")
         }
-    }
 
+        delegate?.didClickedSavedButton()
+    }
 
 }

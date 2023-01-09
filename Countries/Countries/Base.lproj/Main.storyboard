@@ -105,7 +105,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="EBH-6D-dEH">
-                        <barButtonItem key="rightBarButtonItem" image="star" catalog="system" id="MRr-tK-4bT"/>
+                        <barButtonItem key="rightBarButtonItem" image="star" catalog="system" id="MRr-tK-4bT">
+                            <connections>
+                                <action selector="savedButtonClicked:" destination="bGS-RX-vdm" id="P58-QO-Sd0"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="countryCodeLabel" destination="m0l-Cy-VtZ" id="Hav-8B-7Jh"/>

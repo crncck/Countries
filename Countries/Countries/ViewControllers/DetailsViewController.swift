@@ -11,24 +11,20 @@ import SafariServices
 
 class DetailsViewController: UIViewController {
 
+    public var chosenCountryCode = ""
+    private var wikiDataId: String = ""
+    private var imageString: String = ""
+
     // MARK: - Properties
 
-    var chosenCountryCode = ""
-    var wikiDataId: String = ""
-    var imageString: String = ""
-    var savedArray = [Country?]()
-
-    @IBOutlet weak var flagImageView: UIImageView!
-    @IBOutlet weak var countryCodeLabel: UILabel!
-    @IBOutlet weak var informationButton: UIButton!
-    @IBOutlet weak var savedButton: UIBarButtonItem!
-
-    let customButton = UIButton.init(type: .custom)
+    @IBOutlet private weak var flagImageView: UIImageView!
+    @IBOutlet private weak var countryCodeLabel: UILabel!
+    @IBOutlet private weak var informationButton: UIButton!
+    @IBOutlet private weak var savedButton: UIBarButtonItem!
 
     var countryDetails : CountryDetail? {
         didSet {
             DispatchQueue.main.async {
-                self.savedArray = Array(savedSet)
                 self.updateUI()
             }
         }
@@ -48,9 +44,18 @@ class DetailsViewController: UIViewController {
 
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        let isSaved = Utils.checkIfCountryIsSaved(countryCode: chosenCountryCode)
+
+        // change saved button icon if the country is saved in user defaults
+        savedButton.image = isSaved ? UIImage(systemName: "star.fill") : UIImage(systemName: "star")
+    }
+
     // MARK: - API
 
-    func fetchCountryDetails(code: String) {
+    // requests the country details data of given country code from api
+    private func fetchCountryDetails(code: String) {
 
         let countryDetailsRequest = CountryDetailsService(countryCode: code)
         countryDetailsRequest.getCountryDetails { [weak self] result in
@@ -58,7 +63,7 @@ class DetailsViewController: UIViewController {
             case .failure(let error):
                 print(error)
             case .success(let country):
-                self?.countryDetails = country
+                self?.countryDetails = country                  // store the results in a Country Details object
             }
         }
 
@@ -66,6 +71,7 @@ class DetailsViewController: UIViewController {
 
     // MARK: - Actions
 
+    // redirects user to wiki page of the current country
     @IBAction func moreInfoButtonClicked(_ sender: Any) {
         guard let url = URL(string: "https://www.wikidata.org/wiki/\(wikiDataId)") else {
           return
@@ -78,6 +84,20 @@ class DetailsViewController: UIViewController {
         present(vc, animated: true)
     }
 
+    // performs operations of saved button
+    @IBAction func savedButtonClicked(_ sender: Any) {
+        let isSaved = Utils.checkIfCountryIsSaved(countryCode: chosenCountryCode)           // check if the country is saved in user defaults
+        if isSaved {
+            Utils.removeCountryFromUserDefaults(countryCode: chosenCountryCode)             // it is already saved, remove from user defaults
+            savedButton.image = UIImage(systemName: "star")                                 // turn saved button to unselected icon
+        } else {
+            Utils.saveCountryToUserDefaults(countryCode: chosenCountryCode)                 // save the country to user defaults
+            savedButton.image = UIImage(systemName: "star.fill")                            // turn saved button to selected icon
+        }
+
+    }
+
+
     // MARK: - Helpers
 
     func updateUI() {
@@ -86,33 +106,23 @@ class DetailsViewController: UIViewController {
         self.wikiDataId = self.countryDetails?.wikiDataId ?? ""
         self.imageString = self.countryDetails?.flagImageUri ?? ""
 
-        //navigationItem.leftBarButtonItem = UIBarButtonItem(customView: customButton)
-
-        for country in savedArray {
-            print(country?.code)
-            if country?.code == countryDetails?.code {
-                print("iden")
-                //savedButton
-            }
-        }
-
-        /*
+        // activity indicator for image view
         let activityIndicator = UIActivityIndicatorView(style: .large)
-        activityIndicator.frame = CGRect(x: 0, y: 0, width: 20, height: 80)
-        //activityIndicator.hidesWhenStopped = true
+        activityIndicator.frame = CGRect(x: self.flagImageView.frame.midX, y: self.flagImageView.frame.midY, width: 10, height: 80)
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.startAnimating()
         view.addSubview(activityIndicator)
 
-         */
-
+        // get flag image via url and load in web view
         let webView = WKWebView(frame: CGRect(x: 0, y: 0, width: self.flagImageView.frame.width, height: self.flagImageView.frame.height))
         guard let imageUrl = URL(string: imageString) else { return }
         let urlRequest = URLRequest(url: imageUrl)
         webView.load(urlRequest)
         self.flagImageView.addSubview(webView)
+
+        print(webView.isLoading)
+
+
     }
 
 }
-
-
-
-
