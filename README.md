@@ -44,7 +44,7 @@ The second item of the tab bar directs the user to the saved page where the list
 
 ### Details Page
 
-The details page shows detailed information about a country. The country code, flag, and name of the country are shown on this page. The user can add or remove the country from the saved list via the star button on the right of the tab bar. Also, the user can view the Wiki page of the country by pressing on the 'for more information' button.
+The details page shows detailed information about a country. The country code, flag, and name of the country are shown on this page. The user can add or remove the country from the saved list via the star button on the right of the navigation bar. Also, the user can view the Wiki page of the country by pressing on the 'for more information' button.
 
 <img src="https://iili.io/H7KjKIs.png" width="230" />   <img src="https://iili.io/H7Kjz2S.png" width="230" />
 
