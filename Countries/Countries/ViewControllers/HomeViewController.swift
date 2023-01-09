@@ -16,11 +16,11 @@ class HomeViewController: UIViewController {
     var chosenCountryCode = ""
 
     var listOfCountries = [Country]() {
-            didSet {
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                }
+        didSet {
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
             }
+        }
     }
 
     // MARK: Lifecycle
@@ -37,6 +37,10 @@ class HomeViewController: UIViewController {
 
         fetchCountries()
 
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        tableView.reloadData()
     }
 
     // MARK: - API

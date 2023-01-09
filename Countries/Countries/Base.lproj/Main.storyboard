@@ -93,7 +93,7 @@
                         <outlet property="countryCodeLabel" destination="m0l-Cy-VtZ" id="Hav-8B-7Jh"/>
                         <outlet property="flagImageView" destination="iNl-nI-oVh" id="FFt-R5-ISb"/>
                         <outlet property="informationButton" destination="ijL-3a-hWQ" id="vjH-bL-Muf"/>
-                        <outlet property="savedButton" destination="MRr-tK-4bT" id="fDk-98-ayE"/>
+                        <outlet property="savedButton" destination="MRr-tK-4bT" id="9p5-tW-aK4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8EL-jM-aBb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -107,12 +107,25 @@
                     <view key="view" contentMode="scaleToFill" id="4le-bv-0Wd">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="cTa-F6-702">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="bXj-Ho-ZWl"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="cTa-F6-702" firstAttribute="trailing" secondItem="bXj-Ho-ZWl" secondAttribute="trailing" id="0OQ-w2-FVm"/>
+                            <constraint firstItem="bXj-Ho-ZWl" firstAttribute="bottom" secondItem="cTa-F6-702" secondAttribute="bottom" id="0fm-tZ-v9a"/>
+                            <constraint firstItem="cTa-F6-702" firstAttribute="top" secondItem="4le-bv-0Wd" secondAttribute="top" id="XWR-hr-T3D"/>
+                            <constraint firstItem="cTa-F6-702" firstAttribute="leading" secondItem="bXj-Ho-ZWl" secondAttribute="leading" id="aXP-pg-E4I"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="ZmO-l7-h7m"/>
                     <connections>
-                        <segue destination="bGS-RX-vdm" kind="show" id="nFL-oc-wp1"/>
+                        <outlet property="tableView" destination="cTa-F6-702" id="Tz4-s0-bU1"/>
+                        <segue destination="bGS-RX-vdm" kind="show" identifier="goSavedDetails" id="nFL-oc-wp1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Mf-FW-9WA" sceneMemberID="firstResponder"/>
@@ -189,7 +202,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="9DJ-kv-HzN"/>
+        <segue reference="nFL-oc-wp1"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="arrow.right" catalog="system" width="128" height="98"/>

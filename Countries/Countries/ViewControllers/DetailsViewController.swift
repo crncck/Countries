@@ -16,16 +16,19 @@ class DetailsViewController: UIViewController {
     var chosenCountryCode = ""
     var wikiDataId: String = ""
     var imageString: String = ""
+    var savedArray = [Country?]()
 
     @IBOutlet weak var flagImageView: UIImageView!
     @IBOutlet weak var countryCodeLabel: UILabel!
     @IBOutlet weak var informationButton: UIButton!
     @IBOutlet weak var savedButton: UIBarButtonItem!
 
+    let customButton = UIButton.init(type: .custom)
 
     var countryDetails : CountryDetail? {
         didSet {
             DispatchQueue.main.async {
+                self.savedArray = Array(savedSet)
                 self.updateUI()
             }
         }
@@ -41,6 +44,7 @@ class DetailsViewController: UIViewController {
         fetchCountryDetails(code: chosenCountryCode)
 
         informationButton.tintColor = .white
+
 
     }
 
@@ -81,6 +85,24 @@ class DetailsViewController: UIViewController {
         self.navigationItem.title = self.countryDetails?.name
         self.wikiDataId = self.countryDetails?.wikiDataId ?? ""
         self.imageString = self.countryDetails?.flagImageUri ?? ""
+
+        //navigationItem.leftBarButtonItem = UIBarButtonItem(customView: customButton)
+
+        for country in savedArray {
+            print(country?.code)
+            if country?.code == countryDetails?.code {
+                print("iden")
+                //savedButton
+            }
+        }
+
+        /*
+        let activityIndicator = UIActivityIndicatorView(style: .large)
+        activityIndicator.frame = CGRect(x: 0, y: 0, width: 20, height: 80)
+        //activityIndicator.hidesWhenStopped = true
+        view.addSubview(activityIndicator)
+
+         */
 
         let webView = WKWebView(frame: CGRect(x: 0, y: 0, width: self.flagImageView.frame.width, height: self.flagImageView.frame.height))
         guard let imageUrl = URL(string: imageString) else { return }

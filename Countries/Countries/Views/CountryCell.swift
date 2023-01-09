@@ -15,6 +15,9 @@ class CountryCell: UITableViewCell {
         }
     }
 
+    var savedArray = [Country?]()
+    var savedCountriesSet = Set<Country?>()
+
     // MARK: - Properties
 
     @IBOutlet private weak var countryNameLabel: UILabel!
@@ -29,7 +32,7 @@ class CountryCell: UITableViewCell {
         borderView.layer.borderWidth = 2
         borderView.layer.borderColor = UIColor.black.cgColor
         borderView.layer.cornerRadius = 8
-
+        savedButton.tintColor = .black
 
     }
 
@@ -48,6 +51,33 @@ class CountryCell: UITableViewCell {
 
     @IBAction func savedButtonClicked(_ sender: Any) {
         savedButton.isSelected = !savedButton.isSelected
+        var savedCountries = Array(savedCountriesSet)
+
+        if savedButton.isSelected {
+            savedCountries.append(country)
+            savedSet.insert(country)
+            print(savedSet.count)
+
+            /*
+            do {
+                let encoder = JSONEncoder()
+                let data = try encoder.encode(savedCountries)
+                UserDefaults.standard.set(data, forKey:"savedCountries")
+            } catch {
+                print("Unable to Encode Note (\(error))")
+            }
+            */
+            print("saved")
+            let array = Array(savedSet)
+            print(array)
+
+        } else {
+            savedSet.remove(country)
+            print("removed")
+            print(savedSet.count)
+            let array = Array(savedSet)
+            print(array)
+        }
     }
 
 
