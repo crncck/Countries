@@ -17,10 +17,12 @@ class DetailsViewController: UIViewController {
 
     // MARK: - Properties
 
+    let activityIndicator = UIActivityIndicatorView(style: .large)
     @IBOutlet private weak var flagImageView: UIImageView!
     @IBOutlet private weak var countryCodeLabel: UILabel!
     @IBOutlet private weak var informationButton: UIButton!
     @IBOutlet private weak var savedButton: UIBarButtonItem!
+    @IBOutlet weak var webView: WKWebView!
 
     var countryDetails : CountryDetail? {
         didSet {
@@ -100,29 +102,40 @@ class DetailsViewController: UIViewController {
 
     // MARK: - Helpers
 
-    func updateUI() {
+    private func updateUI() {
         self.countryCodeLabel.text = self.countryDetails?.code
         self.navigationItem.title = self.countryDetails?.name
         self.wikiDataId = self.countryDetails?.wikiDataId ?? ""
         self.imageString = self.countryDetails?.flagImageUri ?? ""
 
-        // activity indicator for image view
-        let activityIndicator = UIActivityIndicatorView(style: .large)
-        activityIndicator.frame = CGRect(x: self.flagImageView.frame.midX, y: self.flagImageView.frame.midY, width: 10, height: 80)
+        activityIndicator.frame = CGRect(x: self.webView.frame.midX, y: self.webView.frame.midY, width: 0, height: 0)
         activityIndicator.hidesWhenStopped = true
         activityIndicator.startAnimating()
         view.addSubview(activityIndicator)
 
+        loadFlagImage()
+    }
+
+    private func loadFlagImage() {
         // get flag image via url and load in web view
-        let webView = WKWebView(frame: CGRect(x: 0, y: 0, width: self.flagImageView.frame.width, height: self.flagImageView.frame.height))
+        //let webView = WKWebView(frame: CGRect(x: 0, y: 0, width: self.flagImageView.frame.width, height: self.flagImageView.frame.height))
         guard let imageUrl = URL(string: imageString) else { return }
         let urlRequest = URLRequest(url: imageUrl)
+        webView.navigationDelegate = self
         webView.load(urlRequest)
-        self.flagImageView.addSubview(webView)
-
-        print(webView.isLoading)
-
-
+        //self.flagImageView.addSubview(webView)
     }
 
 }
+
+
+// MARK: - WKNavigationDelegate
+
+extension DetailsViewController: WKNavigationDelegate {
+
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        activityIndicator.stopAnimating()
+    }
+
+}
+
